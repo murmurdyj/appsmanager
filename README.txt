@@ -1,20 +1,16 @@
-# 我的入口 Web App
+# 我的入口 Web App｜莫蘭迪鵝黃最終版
 
-上傳到 GitHub Pages 的檔案：
-
+檔案：
 - index.html
 - manifest.json
 - icon.png（請自行上傳，檔名要完全一樣）
 
-iPhone 使用方式：
-
-1. 用 Safari 打開 GitHub Pages 網址
-2. 分享
+上傳到 GitHub Pages 後：
+1. 用 iPhone Safari 打開 GitHub Pages 網址
+2. 點分享
 3. 加入主畫面
-4. 從桌面 icon 打開
 
 功能：
-
 - 新增入口
 - 編輯入口
 - 刪除入口
