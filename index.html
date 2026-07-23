@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#d7c17d" />
+  <meta name="theme-color" content="#A8D4EE" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="入口" />
@@ -14,17 +14,17 @@
 
   <style>
     :root{
-      --bg:#f3efe7;
-      --panel:#fbfaf6;
-      --card:#ffffff;
-      --text:#3a3834;
-      --muted:#7f7a70;
-      --brown:#d7c17d;
-      --brown2:#a8b2ad;
-      --chip:#eee6d2;
-      --danger:#c86b62;
-      --shadow:0 12px 28px rgba(82, 78, 69, .10);
-      --line:rgba(116, 109, 96, .14);
+      --bg:#F7F3E9;
+      --panel:#FFFDF8;
+      --card:#FFFFFF;
+      --text:#3A3730;
+      --muted:#8C8579;
+      --brown:#A8D4EE;
+      --brown2:#F5DC96;
+      --chip:#EFE9DA;
+      --danger:#C98C82;
+      --shadow:0 12px 28px rgba(92, 86, 70, .09);
+      --line:rgba(120, 112, 96, .14);
     }
 
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -37,7 +37,7 @@
       max-width:480px;
       min-height:100vh;
       margin:0 auto;
-      background:linear-gradient(180deg,#fbfaf6 0%,#f1eadb 100%);
+      background:linear-gradient(180deg,#FFFDF8 0%,#F2EDDF 100%);
       position:relative;
       overflow:hidden;
     }
@@ -83,7 +83,7 @@
       display:flex;align-items:center;justify-content:space-between;margin:18px 0 12px;
     }
     .section-title{font-size:19px;font-weight:900;margin:0}
-    .link-btn{border:0;background:transparent;color:#8a7a45;font-weight:900;font-size:14px}
+    .link-btn{border:0;background:transparent;color:#2F6A8C;font-weight:900;font-size:14px}
 
     .fav-grid{
       display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
@@ -98,13 +98,13 @@
 
     .app-icon{
       width:46px;height:46px;border-radius:17px;
-      background:linear-gradient(135deg,#eee6d2,#d8ddd8);
+      background:linear-gradient(135deg,#EFE9DA,#F5DC96);
       display:grid;place-items:center;
       font-size:25px;flex:0 0 auto;
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.65);
     }
     .fav-name{font-weight:950;font-size:15px;line-height:1.15;width:100%;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-    .star{color:#f5a400;font-size:16px}
+    .star{color:#D9A441;font-size:16px}
 
     .chips{
       display:flex;gap:9px;overflow-x:auto;padding:2px 1px 13px;margin:0 -1px;
@@ -113,9 +113,9 @@
     .chips::-webkit-scrollbar{display:none}
     .chip{
       flex:0 0 auto;border:0;border-radius:999px;background:rgba(255,255,255,.88);
-      padding:10px 15px;font-size:14px;font-weight:900;color:#5f4935;box-shadow:0 6px 16px rgba(65,42,21,.07);
+      padding:10px 15px;font-size:14px;font-weight:900;color:#6E6455;box-shadow:0 6px 16px rgba(92,86,70,.06);
     }
-    .chip.active{background:#d7c17d;color:#3a3834;box-shadow:0 8px 18px rgba(116,109,96,.14)}
+    .chip.active{background:var(--brown);color:#1F3F52;box-shadow:0 8px 18px rgba(92,86,70,.14)}
 
     .list{display:flex;flex-direction:column;gap:12px}
     .item{
@@ -125,9 +125,9 @@
     .item-main{flex:1;min-width:0}
     .name-row{display:flex;align-items:center;gap:7px;min-width:0}
     .name{font-size:16px;font-weight:950;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .tag{font-size:12px;font-weight:900;color:#5f5a50;background:#e8dfc7;border-radius:999px;padding:3px 8px;white-space:nowrap}
+    .tag{font-size:12px;font-weight:900;color:#52664E;background:var(--chip);border-radius:999px;padding:3px 8px;white-space:nowrap}
     .desc{font-size:13px;color:var(--muted);font-weight:650;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .more{font-size:20px;color:#a18b75;padding:6px}
+    .more{font-size:20px;color:#A69C8C;padding:6px}
 
     .empty{
       display:none;text-align:center;color:var(--muted);font-weight:800;padding:38px 8px;
@@ -136,19 +136,19 @@
     .bottom-nav{
       position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:480px;
       background:rgba(251,250,246,.88);backdrop-filter:blur(16px);
-      border-top:1px solid rgba(116,109,96,.12);display:grid;grid-template-columns:repeat(3,1fr);
+      border-top:1px solid rgba(116,109,96,.12);display:grid;grid-template-columns:repeat(4,1fr);
       padding:9px 12px calc(9px + env(safe-area-inset-bottom));z-index:10;
     }
     .nav-btn{
-      border:0;background:transparent;color:#8b7a68;font-weight:900;font-size:12px;
+      border:0;background:transparent;color:#8C8579;font-weight:900;font-size:12px;
       display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0;
     }
     .nav-btn span{font-size:22px}
-    .nav-btn.active{color:#8a7a45}
+    .nav-btn.active{color:#2F6A8C}
 
     .fab{
       position:fixed;right:calc(50% - 220px);bottom:88px;width:62px;height:62px;border:0;border-radius:23px;
-      background:#d7c17d;color:#3a3834;font-size:32px;box-shadow:0 16px 34px rgba(116,109,96,.20);z-index:12;
+      background:var(--brown);color:#1F3F52;font-size:32px;box-shadow:0 16px 34px rgba(92,86,70,.18);z-index:12;
     }
     @media(max-width:480px){.fab{right:20px}}
 
@@ -157,11 +157,14 @@
     }
     .cat-card{
       min-height:122px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.9);
-      box-shadow:var(--shadow);padding:17px;text-align:left;color:inherit;
+      box-shadow:var(--shadow);padding:17px;text-align:left;color:inherit;position:relative;
     }
     .cat-card .big{font-size:28px;margin-bottom:12px}
     .cat-card .cat-name{font-size:18px;font-weight:950}
     .cat-card .count{margin-top:5px;color:var(--muted);font-weight:750;font-size:13px}
+    .cat-card .edit-actions{display:flex;gap:8px;margin-top:10px}
+    .cat-card .edit-actions button{flex:1;border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:7px 0;font-size:13px;font-weight:900;color:var(--text)}
+    .cat-card .edit-actions button.del{color:#A5584A}
 
     .page-title{
       padding:22px 20px 14px;display:flex;align-items:center;justify-content:space-between;
@@ -172,7 +175,7 @@
     .form{
       padding:10px 20px 110px;display:flex;flex-direction:column;gap:14px;
     }
-    .field label{display:block;font-size:13px;font-weight:950;color:#6f5843;margin:0 0 7px}
+    .field label{display:block;font-size:13px;font-weight:950;color:#6E6455;margin:0 0 7px}
     .field input,.field select,.field textarea{
       width:100%;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.92);
       padding:14px;font-size:15px;outline:0;color:var(--text);box-shadow:0 7px 16px rgba(65,42,21,.06);
@@ -185,17 +188,17 @@
     }
     .switch-row strong{font-size:15px}
     .switch-row small{display:block;color:var(--muted);font-weight:750;margin-top:3px}
-    .switch{width:52px;height:31px;appearance:none;background:#ddd;border-radius:999px;position:relative;outline:0;transition:.2s}
-    .switch:checked{background:#d7c17d}
+    .switch{width:52px;height:31px;appearance:none;background:#E4E0D4;border-radius:999px;position:relative;outline:0;transition:.2s}
+    .switch:checked{background:var(--brown)}
     .switch:before{content:"";position:absolute;width:27px;height:27px;border-radius:50%;background:white;top:2px;left:2px;transition:.2s;box-shadow:0 2px 8px rgba(0,0,0,.2)}
     .switch:checked:before{left:23px}
 
     .primary,.secondary,.danger-btn{
       width:100%;border:0;border-radius:18px;padding:15px 16px;font-size:16px;font-weight:950;
     }
-    .primary{background:#d7c17d;color:#3a3834;box-shadow:0 12px 24px rgba(116,109,96,.18)}
+    .primary{background:var(--brown);color:#1F3F52;box-shadow:0 12px 24px rgba(92,86,70,.16)}
     .secondary{background:#fff;border:1px solid var(--line);color:#6f6a5f}
-    .danger-btn{background:#f3ddd9;color:#a64d46}
+    .danger-btn{background:#F6E4DF;color:#A5584A}
     .form-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
 
     .detail-card{
@@ -206,8 +209,8 @@
     .detail-top .app-icon{margin:0 auto 12px;width:70px;height:70px;border-radius:24px;font-size:38px}
     .detail-top h2{margin:0 0 9px;font-size:28px}
     .info-block{border-top:1px solid rgba(139,90,43,.12);padding:14px 0}
-    .info-block strong{display:block;font-size:13px;color:#6f5843;margin-bottom:5px}
-    .info-block p{margin:0;font-size:14px;line-height:1.5;color:#3b3026;word-break:break-all}
+    .info-block strong{display:block;font-size:13px;color:#6E6455;margin-bottom:5px}
+    .info-block p{margin:0;font-size:14px;line-height:1.5;color:#3A3730;word-break:break-all}
     .detail-actions{display:grid;gap:10px;margin-top:10px}
     .detail-actions.two{grid-template-columns:1fr 1fr}
 
@@ -235,6 +238,14 @@
     .sheet-actions{display:grid;gap:10px}
 
     .hidden-file{display:none}
+
+    .article-meta{display:flex;align-items:center;gap:6px;margin-top:4px;color:var(--muted);font-size:12px;font-weight:700}
+    .article-meta .dot{opacity:.5}
+    .quick-add-row{display:flex;gap:8px;margin-bottom:4px}
+    .quick-add-row input{flex:1}
+    .btn-inline{width:auto;flex:0 0 auto;padding:0 16px}
+    .sheet .field{margin-bottom:0}
+    .sheet-form{display:flex;flex-direction:column;gap:12px;margin-bottom:16px;max-height:52vh;overflow-y:auto}
   </style>
 </head>
 
@@ -280,18 +291,64 @@
       </main>
     </section>
 
+    <section id="articlesScreen" class="screen">
+      <header class="header">
+        <div class="topbar">
+          <div class="title">
+            <h1>文章收藏</h1>
+            <p>儲存想看的文章與連結</p>
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" onclick="focusArticleSearch()">⌕</button>
+          </div>
+        </div>
+        <div class="search">
+          <span>⌕</span>
+          <input id="articleSearchInput" placeholder="搜尋標題、備註或分類" oninput="renderArticles()" />
+        </div>
+      </header>
+
+      <main class="content">
+        <div class="section-head">
+          <p class="section-title">分類</p>
+          <button class="link-btn" onclick="addCategory()">新增分類 ›</button>
+        </div>
+        <div id="articleChips" class="chips"></div>
+
+        <div class="section-head">
+          <p class="section-title">全部文章</p>
+          <button class="link-btn" onclick="sortArticlesLatest()">最新加入⌄</button>
+        </div>
+        <div id="articleList" class="list"></div>
+        <div id="articleEmptyState" class="empty">還沒有收藏任何文章，貼上連結或點右下角「＋」快速加入</div>
+      </main>
+    </section>
+
+    <section id="articleDetailScreen" class="screen">
+      <div class="page-title">
+        <button class="back" onclick="goBack()">‹</button>
+        <h2>文章詳情</h2>
+        <button class="icon-btn" onclick="openQuickAdd(currentArticleDetailId)">⋯</button>
+      </div>
+      <div id="articleDetailCard" class="detail-card"></div>
+    </section>
+
     <section id="categoryScreen" class="screen">
       <div class="page-title">
-        <button class="back" onclick="showScreen('homeScreen')">‹</button>
+        <button class="back" onclick="goBack()">‹</button>
         <h2>分類</h2>
-        <button class="icon-btn" onclick="openForm(null)">＋</button>
+        <button class="icon-btn" onclick="addCategory()">＋</button>
+      </div>
+      <div class="section-head" style="padding:0 20px;margin-top:0">
+        <p class="section-title" style="font-size:14px;color:var(--muted);font-weight:750">入口與文章共用同一套分類</p>
+        <button class="link-btn" id="categoryEditToggle" onclick="toggleCategoryEditMode()">編輯分類</button>
       </div>
       <div id="catGrid" class="cat-grid"></div>
     </section>
 
     <section id="detailScreen" class="screen">
       <div class="page-title">
-        <button class="back" onclick="showScreen('homeScreen')">‹</button>
+        <button class="back" onclick="goBack()">‹</button>
         <h2>入口資訊</h2>
         <button class="icon-btn" onclick="openForm(currentDetailId)">⋯</button>
       </div>
@@ -300,7 +357,7 @@
 
     <section id="formScreen" class="screen">
       <div class="page-title">
-        <button class="back" onclick="showScreen('homeScreen')">‹</button>
+        <button class="back" onclick="goBack()">‹</button>
         <h2 id="formTitle">新增入口</h2>
         <button class="link-btn" onclick="saveForm()">儲存</button>
       </div>
@@ -336,7 +393,7 @@
           <input id="entryFavorite" type="checkbox" class="switch" />
         </div>
         <div class="form-actions">
-          <button type="button" class="secondary" onclick="showScreen('homeScreen')">取消</button>
+          <button type="button" class="secondary" onclick="goBack()">取消</button>
           <button type="submit" class="primary">儲存</button>
         </div>
       </form>
@@ -344,7 +401,7 @@
 
     <section id="settingsScreen" class="screen">
       <div class="page-title">
-        <button class="back" onclick="showScreen('homeScreen')">‹</button>
+        <button class="back" onclick="goBack()">‹</button>
         <h2>設定</h2>
         <span style="width:46px"></span>
       </div>
@@ -373,10 +430,11 @@
       <input id="importFile" class="hidden-file" type="file" accept="application/json,.json" onchange="importData(event)" />
     </section>
 
-    <button class="fab" onclick="openForm(null)">＋</button>
+    <button class="fab" id="fab" onclick="fabAction()">＋</button>
 
     <nav class="bottom-nav">
       <button class="nav-btn active" id="navHome" onclick="showScreen('homeScreen')"><span>⌂</span>首頁</button>
+      <button class="nav-btn" id="navArticles" onclick="showScreen('articlesScreen')"><span>📰</span>文章</button>
       <button class="nav-btn" id="navCategory" onclick="showScreen('categoryScreen')"><span>▦</span>分類</button>
       <button class="nav-btn" id="navSettings" onclick="showScreen('settingsScreen')"><span>⚙</span>設定</button>
     </nav>
@@ -391,30 +449,76 @@
         </div>
       </div>
     </div>
+
+    <div id="quickAddModal" class="modal">
+      <div class="sheet">
+        <h3 id="quickAddTitle">快速加入文章</h3>
+        <div class="sheet-form">
+          <div class="field">
+            <label>網址 *</label>
+            <div class="quick-add-row">
+              <input id="quickUrl" placeholder="貼上文章或貼文連結" />
+              <button type="button" class="secondary btn-inline" onclick="pasteQuickUrl()">貼上</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>標題</label>
+            <input id="quickTitle" placeholder="留空則自動帶入網址" />
+          </div>
+          <div class="field">
+            <label>分類</label>
+            <select id="quickCategory"></select>
+          </div>
+          <div class="field">
+            <label>備註</label>
+            <textarea id="quickNote" placeholder="想記錄的重點或原因"></textarea>
+          </div>
+        </div>
+        <div class="sheet-actions">
+          <button class="primary" onclick="saveQuickArticle()">儲存</button>
+          <button class="secondary" onclick="closeQuickAdd()">取消</button>
+        </div>
+      </div>
+    </div>
   </div>
 
 <script>
 const STORAGE_KEY = "my_web_app_launcher_v1";
 
 const defaultData = {
-  categories: ["全部", "工作", "家總", "個人", "AI工具", "表單", "資料", "開發", "網站後台"],
+  categories: ["全部", "AI", "科技", "理財", "泰語", "DJ", "吉他", "音樂", "Jennie", "lingorm", "娛樂", "生活", "健康", "閱讀", "工作", "待處理"],
+  articles: [],
   entries: [
     { id: cryptoId(), name: "GA4", url: "https://analytics.google.com/", category: "工作", desc: "Google Analytics 4 流量分析", icon: "📊", favorite: true, lastUsed: 0 },
-    { id: cryptoId(), name: "家照活動前台", url: "https://workdai.github.io/care-platform/", category: "家總", desc: "查詢各縣市家照活動資訊", icon: "🤝", favorite: true, lastUsed: 0 },
-    { id: cryptoId(), name: "Google 表單後台", url: "https://forms.google.com/", category: "表單", desc: "活動上傳表單與統計", icon: "📝", favorite: true, lastUsed: 0 },
-    { id: cryptoId(), name: "Notion", url: "https://www.notion.so/", category: "個人", desc: "筆記、文件與專案整理", icon: "📒", favorite: false, lastUsed: 0 },
-    { id: cryptoId(), name: "Google Sheet", url: "https://sheets.google.com/", category: "資料", desc: "資料表與統計", icon: "📗", favorite: false, lastUsed: 0 },
-    { id: cryptoId(), name: "GitHub", url: "https://github.com/", category: "開發", desc: "程式碼管理與部署", icon: "🐙", favorite: false, lastUsed: 0 },
-    { id: cryptoId(), name: "ChatGPT", url: "https://chatgpt.com/", category: "AI工具", desc: "AI 對話與工作輔助", icon: "🌀", favorite: false, lastUsed: 0 }
+    { id: cryptoId(), name: "家照活動前台", url: "https://workdai.github.io/care-platform/", category: "生活", desc: "查詢各縣市家照活動資訊", icon: "🤝", favorite: true, lastUsed: 0 },
+    { id: cryptoId(), name: "Google 表單後台", url: "https://forms.google.com/", category: "工作", desc: "活動上傳表單與統計", icon: "📝", favorite: true, lastUsed: 0 },
+    { id: cryptoId(), name: "Notion", url: "https://www.notion.so/", category: "生活", desc: "筆記、文件與專案整理", icon: "📒", favorite: false, lastUsed: 0 },
+    { id: cryptoId(), name: "Google Sheet", url: "https://sheets.google.com/", category: "工作", desc: "資料表與統計", icon: "📗", favorite: false, lastUsed: 0 },
+    { id: cryptoId(), name: "GitHub", url: "https://github.com/", category: "科技", desc: "程式碼管理與部署", icon: "🐙", favorite: false, lastUsed: 0 },
+    { id: cryptoId(), name: "ChatGPT", url: "https://chatgpt.com/", category: "科技", desc: "AI 對話與工作輔助", icon: "🌀", favorite: false, lastUsed: 0 }
   ]
 };
 
 let data = loadData();
 let activeCategory = "全部";
 let currentDetailId = null;
+let activeArticleCategory = "全部";
+let currentArticleDetailId = null;
+let quickAddEditingId = null;
+let categoryEditMode = false;
 
 function cryptoId(){
   return "id_" + Math.random().toString(36).slice(2) + Date.now().toString(36);
+}
+
+function migrateData(parsed){
+  if(!parsed.articles) parsed.articles = [];
+  if(!parsed.categories) parsed.categories = structuredClone(defaultData.categories);
+  if(parsed.articleCategories){
+    parsed.articleCategories.forEach(c => { if(!parsed.categories.includes(c)) parsed.categories.push(c); });
+    delete parsed.articleCategories;
+  }
+  return parsed;
 }
 
 function loadData(){
@@ -426,7 +530,7 @@ function loadData(){
   try{
     const parsed = JSON.parse(raw);
     if(!parsed.entries || !parsed.categories) throw new Error();
-    return parsed;
+    return migrateData(parsed);
   }catch{
     localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultData));
     return structuredClone(defaultData);
@@ -437,17 +541,43 @@ function saveData(){
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
-function showScreen(id){
+const tabScreens = ["homeScreen", "articlesScreen", "categoryScreen", "settingsScreen"];
+let screenHistory = [];
+
+function activateScreen(id){
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 
   document.querySelectorAll(".nav-btn").forEach(n => n.classList.remove("active"));
   if(id === "homeScreen") document.getElementById("navHome").classList.add("active");
+  if(id === "articlesScreen") document.getElementById("navArticles").classList.add("active");
   if(id === "categoryScreen") document.getElementById("navCategory").classList.add("active");
   if(id === "settingsScreen") document.getElementById("navSettings").classList.add("active");
 
-  document.querySelector(".fab").style.display = (id === "settingsScreen" || id === "formScreen" || id === "detailScreen") ? "none" : "block";
+  const hiddenFabScreens = ["settingsScreen", "formScreen", "detailScreen", "categoryScreen", "articleDetailScreen"];
+  document.getElementById("fab").style.display = hiddenFabScreens.includes(id) ? "none" : "block";
+
   renderAll();
+}
+
+function showScreen(id){
+  const current = document.querySelector(".screen.active")?.id;
+  if(current && current !== id){
+    if(tabScreens.includes(id)) screenHistory = [];
+    else screenHistory.push(current);
+  }
+  activateScreen(id);
+}
+
+function goBack(){
+  const prev = screenHistory.pop();
+  activateScreen(prev || "homeScreen");
+}
+
+function fabAction(){
+  const activeId = document.querySelector(".screen.active").id;
+  if(activeId === "articlesScreen") openQuickAdd(null);
+  else openForm(null);
 }
 
 function focusSearch(){
@@ -531,18 +661,87 @@ function renderHome(){
 }
 
 function renderCategories(){
-  const icons = { "全部":"▦", "工作":"💼", "家總":"🤝", "個人":"👤", "AI工具":"🤖", "表單":"📝", "資料":"🟢", "開發":"⌘", "網站後台":"🌐" };
+  const icons = { "全部":"▦", "AI":"🤖", "科技":"💻", "理財":"💰", "泰語":"🇹🇭", "DJ":"🎧", "吉他":"🎸", "音樂":"🎵", "Jennie":"🌸", "lingorm":"🧴", "娛樂":"🎬", "生活":"🏡", "健康":"🩺", "閱讀":"📖", "工作":"💼", "待處理":"📌" };
   const cats = data.categories.filter(c => c !== "全部");
+  document.getElementById("categoryEditToggle").textContent = categoryEditMode ? "完成" : "編輯分類";
+
   document.getElementById("catGrid").innerHTML = cats.map(c => {
-    const count = data.entries.filter(e => e.category === c).length;
+    const count = data.entries.filter(e => e.category === c).length + data.articles.filter(a => a.category === c).length;
+    if(categoryEditMode){
+      return `
+        <div class="cat-card">
+          <div class="big">${icons[c] || "📁"}</div>
+          <div class="cat-name">${escapeHtml(c)}</div>
+          <div class="count">${count} 筆資料</div>
+          <div class="edit-actions">
+            <button onclick="renameCategory('${escapeAttr(c)}')">改名</button>
+            <button class="del" onclick="deleteCategory('${escapeAttr(c)}')">刪除</button>
+          </div>
+        </div>
+      `;
+    }
     return `
       <button class="cat-card" onclick="setCategory('${escapeAttr(c)}');showScreen('homeScreen')">
         <div class="big">${icons[c] || "📁"}</div>
         <div class="cat-name">${escapeHtml(c)}</div>
-        <div class="count">${count} 個入口</div>
+        <div class="count">${count} 筆資料</div>
       </button>
     `;
   }).join("");
+}
+
+function toggleCategoryEditMode(){
+  categoryEditMode = !categoryEditMode;
+  renderCategories();
+}
+
+function addCategory(){
+  const name = prompt("新增分類名稱");
+  if(!name) return;
+  const trimmed = name.trim();
+  if(!trimmed || trimmed === "全部") return;
+  if(data.categories.includes(trimmed)){
+    alert("這個分類已經存在了");
+    return;
+  }
+  data.categories.push(trimmed);
+  saveData();
+  renderAll();
+}
+
+function renameCategory(oldName){
+  const name = prompt("重新命名分類", oldName);
+  if(!name) return;
+  const trimmed = name.trim();
+  if(!trimmed || trimmed === oldName) return;
+  if(trimmed === "全部" || data.categories.includes(trimmed)){
+    alert("名稱不能是「全部」，也不能跟現有分類重複");
+    return;
+  }
+  const idx = data.categories.indexOf(oldName);
+  if(idx === -1) return;
+  data.categories[idx] = trimmed;
+  data.entries.forEach(e => { if(e.category === oldName) e.category = trimmed; });
+  data.articles.forEach(a => { if(a.category === oldName) a.category = trimmed; });
+  if(activeCategory === oldName) activeCategory = trimmed;
+  if(activeArticleCategory === oldName) activeArticleCategory = trimmed;
+  saveData();
+  renderAll();
+}
+
+function deleteCategory(name){
+  const total = data.entries.filter(e => e.category === name).length + data.articles.filter(a => a.category === name).length;
+  const warn = total
+    ? `這個分類目前有 ${total} 筆資料。刪除分類後，這些項目不會被刪除，但分類清單中不會再看到它們，之後可以到「編輯」裡改成別的分類。確定要刪除嗎？`
+    : "確定要刪除這個分類嗎？";
+  openModal("刪除分類", warn, () => {
+    data.categories = data.categories.filter(c => c !== name);
+    if(activeCategory === name) activeCategory = "全部";
+    if(activeArticleCategory === name) activeArticleCategory = "全部";
+    saveData();
+    closeModal();
+    renderAll();
+  });
 }
 
 function renderCategoryOptions(selected){
@@ -554,8 +753,162 @@ function renderCategoryOptions(selected){
 
 function renderAll(){
   if(document.getElementById("homeScreen").classList.contains("active")) renderHome();
+  if(document.getElementById("articlesScreen").classList.contains("active")) renderArticles();
   renderCategories();
 }
+
+function domainOf(url){
+  try{ return new URL(url).hostname.replace(/^www\./, ""); }
+  catch{ return url; }
+}
+
+function formatDate(ts){
+  if(!ts) return "尚未記錄";
+  return new Date(ts).toLocaleDateString("zh-TW", { year:"numeric", month:"2-digit", day:"2-digit" });
+}
+
+function focusArticleSearch(){
+  showScreen("articlesScreen");
+  setTimeout(() => document.getElementById("articleSearchInput").focus(), 50);
+}
+
+function setArticleCategory(cat){
+  activeArticleCategory = cat;
+  renderArticles();
+}
+
+function sortArticlesLatest(){
+  data.articles.sort((a,b) => (b.addedAt || 0) - (a.addedAt || 0));
+  saveData();
+  renderArticles();
+}
+
+function renderArticles(){
+  const keyword = document.getElementById("articleSearchInput")?.value?.trim().toLowerCase() || "";
+  const list = data.articles.filter(a => {
+    const catMatch = activeArticleCategory === "全部" || a.category === activeArticleCategory;
+    const text = `${a.title} ${a.category} ${a.note} ${a.url}`.toLowerCase();
+    return catMatch && text.includes(keyword);
+  });
+
+  document.getElementById("articleChips").innerHTML = data.categories.map(c => `
+    <button class="chip ${c === activeArticleCategory ? "active" : ""}" onclick="setArticleCategory('${escapeAttr(c)}')">${escapeHtml(c)}</button>
+  `).join("");
+
+  document.getElementById("articleList").innerHTML = list.map(a => `
+    <div class="item" onclick="openArticleDetail('${a.id}')">
+      <div class="app-icon">🔖</div>
+      <div class="item-main">
+        <div class="name-row"><div class="name">${escapeHtml(a.title || domainOf(a.url))}</div><span class="tag">${escapeHtml(a.category)}</span></div>
+        <div class="desc">${escapeHtml(a.note || a.url)}</div>
+        <div class="article-meta"><span>${escapeHtml(domainOf(a.url))}</span><span class="dot">·</span><span>${formatDate(a.addedAt)}</span></div>
+      </div>
+      <div class="more">⋮</div>
+    </div>
+  `).join("");
+
+  document.getElementById("articleEmptyState").style.display = list.length ? "none" : "block";
+}
+
+function openArticleDetail(id){
+  currentArticleDetailId = id;
+  const a = data.articles.find(x => x.id === id);
+  if(!a) return;
+  document.getElementById("articleDetailCard").innerHTML = `
+    <div class="detail-top">
+      <div class="app-icon">🔖</div>
+      <h2>${escapeHtml(a.title || domainOf(a.url))}</h2>
+      <span class="tag">${escapeHtml(a.category)}</span>
+    </div>
+    <div class="info-block"><strong>網址</strong><p>${escapeHtml(a.url)}</p></div>
+    <div class="info-block"><strong>備註</strong><p>${escapeHtml(a.note || "未填寫")}</p></div>
+    <div class="info-block"><strong>加入時間</strong><p>${formatDate(a.addedAt)}</p></div>
+    <div class="detail-actions">
+      <button class="primary" onclick="openArticleLink('${a.id}')">開啟原文 ↗</button>
+      <div class="detail-actions two">
+        <button class="secondary" onclick="openQuickAdd('${a.id}')">編輯</button>
+        <button class="danger-btn" onclick="confirmDeleteArticle('${a.id}')">刪除</button>
+      </div>
+    </div>
+  `;
+  showScreen("articleDetailScreen");
+}
+
+function openArticleLink(id){
+  const a = data.articles.find(x => x.id === id);
+  if(!a) return;
+  window.open(a.url, "_blank", "noopener");
+}
+
+function confirmDeleteArticle(id){
+  const a = data.articles.find(x => x.id === id);
+  if(!a) return;
+  openModal("刪除文章", `確定要刪除「${a.title || domainOf(a.url)}」嗎？`, () => {
+    data.articles = data.articles.filter(x => x.id !== id);
+    saveData();
+    closeModal();
+    showScreen("articlesScreen");
+  });
+}
+
+function renderQuickCategoryOptions(selected){
+  const select = document.getElementById("quickCategory");
+  select.innerHTML = data.categories.filter(c => c !== "全部").map(c => `
+    <option value="${escapeAttr(c)}" ${c === selected ? "selected" : ""}>${escapeHtml(c)}</option>
+  `).join("");
+}
+
+function openQuickAdd(id, prefillUrl){
+  quickAddEditingId = id || null;
+  const editing = Boolean(id);
+  const a = editing ? data.articles.find(x => x.id === id) : null;
+
+  document.getElementById("quickAddTitle").textContent = editing ? "編輯文章" : "快速加入文章";
+  renderQuickCategoryOptions(a?.category || "待處理");
+  document.getElementById("quickUrl").value = a?.url || prefillUrl || "";
+  document.getElementById("quickTitle").value = a?.title || "";
+  document.getElementById("quickNote").value = a?.note || "";
+
+  document.getElementById("quickAddModal").classList.add("show");
+  if(!editing && !prefillUrl) setTimeout(() => document.getElementById("quickUrl").focus(), 50);
+}
+
+function closeQuickAdd(){
+  document.getElementById("quickAddModal").classList.remove("show");
+}
+
+async function pasteQuickUrl(){
+  try{
+    const text = await navigator.clipboard.readText();
+    if(text) document.getElementById("quickUrl").value = text.trim();
+  }catch{
+    alert("無法讀取剪貼簿，請手動貼上網址");
+  }
+}
+
+function saveQuickArticle(){
+  const url = normalizeUrl(document.getElementById("quickUrl").value);
+  if(!url){
+    alert("請輸入網址");
+    return;
+  }
+  const title = document.getElementById("quickTitle").value.trim();
+  const category = document.getElementById("quickCategory").value || "待處理";
+  const note = document.getElementById("quickNote").value.trim();
+
+  if(quickAddEditingId){
+    const entry = data.articles.find(x => x.id === quickAddEditingId);
+    if(entry) Object.assign(entry, { url, title, category, note });
+  }else{
+    data.articles.unshift({ id: cryptoId(), url, title, category, note, addedAt: Date.now() });
+  }
+
+  saveData();
+  closeQuickAdd();
+  activeArticleCategory = "全部";
+  showScreen("articlesScreen");
+}
+
 
 function setCategory(cat){
   activeCategory = cat;
@@ -651,11 +1004,13 @@ function importData(event){
       const parsed = JSON.parse(reader.result);
       const imported = parsed.data || parsed;
       if(!imported.entries || !imported.categories) throw new Error("格式不符");
+      migrateData(imported);
       openModal("匯入資料", "匯入後會覆蓋目前這台裝置的資料，確定要繼續嗎？", () => {
         data = imported;
         saveData();
         closeModal();
         activeCategory = "全部";
+        activeArticleCategory = "全部";
         showScreen("homeScreen");
         alert("匯入完成");
       });
@@ -670,7 +1025,7 @@ function importData(event){
 function openResetModal(){
   openModal("清除本機資料", "這會刪除目前這台裝置儲存的所有入口資料。建議先備份。", () => {
     localStorage.removeItem(STORAGE_KEY);
-    data = { categories: ["全部", "工作", "家總", "個人", "AI工具", "表單", "資料", "開發", "網站後台"], entries: [] };
+    data = structuredClone(defaultData);
     saveData();
     closeModal();
     activeCategory = "全部";
