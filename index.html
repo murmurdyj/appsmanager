@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#A8D4EE" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="入口" />
-  <title>我的入口</title>
+  <meta name="apple-mobile-web-app-title" content="我的網站" />
+  <title>我的網站</title>
 
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="icon.png" />
@@ -106,6 +106,12 @@
     .fav-name{font-weight:950;font-size:15px;line-height:1.15;width:100%;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
     .star{color:#D9A441;font-size:16px}
 
+    .chips-wrap{position:relative}
+    .chips-wrap::after{
+      content:"";position:absolute;top:0;right:0;bottom:13px;width:34px;
+      background:linear-gradient(90deg, rgba(248,242,226,0), var(--bg) 80%);
+      pointer-events:none;
+    }
     .chips{
       display:flex;gap:9px;overflow-x:auto;padding:2px 1px 13px;margin:0 -1px;
       scrollbar-width:none;
@@ -136,14 +142,14 @@
     .bottom-nav{
       position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:480px;
       background:rgba(251,250,246,.88);backdrop-filter:blur(16px);
-      border-top:1px solid rgba(116,109,96,.12);display:grid;grid-template-columns:repeat(4,1fr);
-      padding:9px 12px calc(9px + env(safe-area-inset-bottom));z-index:10;
+      border-top:1px solid rgba(116,109,96,.12);display:grid;grid-template-columns:repeat(5,1fr);
+      padding:9px 6px calc(9px + env(safe-area-inset-bottom));z-index:10;
     }
     .nav-btn{
-      border:0;background:transparent;color:#8C8579;font-weight:900;font-size:12px;
-      display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0;
+      border:0;background:transparent;color:#8C8579;font-weight:900;font-size:11px;
+      display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;
     }
-    .nav-btn span{font-size:22px}
+    .nav-btn span{font-size:20px}
     .nav-btn.active{color:#2F6A8C}
 
     .fab{
@@ -156,15 +162,26 @@
       display:grid;grid-template-columns:repeat(2,1fr);gap:13px;padding:4px 20px 110px;
     }
     .cat-card{
-      min-height:122px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.9);
-      box-shadow:var(--shadow);padding:17px;text-align:left;color:inherit;position:relative;
+      min-height:auto;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.9);
+      box-shadow:var(--shadow);padding:15px 17px;text-align:left;color:inherit;position:relative;
     }
-    .cat-card .big{font-size:28px;margin-bottom:12px}
-    .cat-card .cat-name{font-size:18px;font-weight:950}
-    .cat-card .count{margin-top:5px;color:var(--muted);font-weight:750;font-size:13px}
-    .cat-card .edit-actions{display:flex;gap:8px;margin-top:10px}
-    .cat-card .edit-actions button{flex:1;border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:7px 0;font-size:13px;font-weight:900;color:var(--text)}
+    .cat-card .row{display:flex;align-items:center;gap:10px}
+    .cat-card .big{font-size:24px;line-height:1}
+    .cat-card .cat-name{font-size:16px;font-weight:950}
+    .cat-card .count{margin-top:4px;color:var(--muted);font-weight:750;font-size:12px}
+    .cat-card .edit-actions{display:flex;gap:6px;margin-top:10px}
+    .cat-card .edit-actions button{flex:1;border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:7px 0;font-size:12px;font-weight:900;color:var(--text)}
     .cat-card .edit-actions button.del{color:#A5584A}
+    .cat-card .edit-actions button:disabled{opacity:.3}
+
+    .seg-row{display:flex;gap:8px;padding:14px 20px 4px}
+    .seg-btn{flex:1;border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:10px 0;font-size:14px;font-weight:900;color:var(--muted)}
+    .seg-btn.active{background:var(--brown);color:#1F3F52;border-color:transparent}
+
+    .sort-select{
+      border:0;background:transparent;color:#2F6A8C;font-weight:900;font-size:14px;
+      -webkit-appearance:none;appearance:none;padding-right:2px;text-align:right;
+    }
 
     .page-title{
       padding:22px 20px 14px;display:flex;align-items:center;justify-content:space-between;
@@ -255,39 +272,73 @@
       <header class="header">
         <div class="topbar">
           <div class="title">
-            <h1>我的入口</h1>
-            <p>集中管理工作網頁與 Web App</p>
+            <h1>首頁</h1>
+            <p>常用捷徑與快速搜尋</p>
           </div>
           <div class="top-actions">
-            <button class="icon-btn" onclick="focusSearch()">⌕</button>
             <button class="icon-btn" onclick="showScreen('settingsScreen')">⚙</button>
           </div>
         </div>
         <div class="search">
           <span>⌕</span>
-          <input id="searchInput" placeholder="搜尋名稱、分類或關鍵字" oninput="renderHome()" />
+          <input id="searchInput" placeholder="搜尋網站或文章" oninput="renderHome()" />
+        </div>
+      </header>
+
+      <main class="content">
+        <div id="homeDefaultView">
+          <div class="section-head">
+            <p class="section-title">⭐ 常用網站</p>
+            <button class="link-btn" onclick="goToFavoriteWebsites()">全部 ›</button>
+          </div>
+          <div id="favGrid" class="fav-grid"></div>
+          <div id="favEmptyState" class="empty">還沒有常用網站，到「網站」分頁編輯項目時可以設為常用</div>
+        </div>
+
+        <div id="homeSearchView" style="display:none">
+          <div class="section-head">
+            <p class="section-title">搜尋結果</p>
+          </div>
+          <div id="homeSearchList" class="list"></div>
+          <div id="homeSearchEmpty" class="empty">找不到符合的網站或文章</div>
+        </div>
+      </main>
+    </section>
+
+    <section id="websitesScreen" class="screen">
+      <header class="header">
+        <div class="topbar">
+          <div class="title">
+            <h1>網站</h1>
+            <p>集中管理工作網頁與 Web App</p>
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" onclick="focusWebsiteSearch()">⌕</button>
+          </div>
+        </div>
+        <div class="search">
+          <span>⌕</span>
+          <input id="websiteSearchInput" placeholder="搜尋名稱、分類或關鍵字" oninput="renderWebsites()" />
         </div>
       </header>
 
       <main class="content">
         <div class="section-head">
-          <p class="section-title">⭐ 常用</p>
-          <button class="link-btn" onclick="setCategory('常用')">全部 ›</button>
-        </div>
-        <div id="favGrid" class="fav-grid"></div>
-
-        <div class="section-head">
           <p class="section-title">分類</p>
-          <button class="link-btn" onclick="showScreen('categoryScreen')">管理分類 ›</button>
         </div>
-        <div id="chips" class="chips"></div>
+        <div class="chips-wrap"><div id="chips" class="chips"></div></div>
 
         <div class="section-head">
-          <p class="section-title">所有入口</p>
-          <button class="link-btn" onclick="sortLatest()">最新使用⌄</button>
+          <p class="section-title">所有網站</p>
+          <select id="websiteSortSelect" class="sort-select" onchange="sortEntries(this.value)">
+            <option value="lastUsed">最新使用</option>
+            <option value="added">最新加入</option>
+            <option value="name">名稱 A→Z</option>
+            <option value="nameDesc">名稱 Z→A</option>
+          </select>
         </div>
         <div id="appList" class="list"></div>
-        <div id="emptyState" class="empty">目前沒有符合的入口</div>
+        <div id="emptyState" class="empty">目前沒有符合的網站</div>
       </main>
     </section>
 
@@ -311,13 +362,16 @@
       <main class="content">
         <div class="section-head">
           <p class="section-title">分類</p>
-          <button class="link-btn" onclick="addCategory()">新增分類 ›</button>
         </div>
-        <div id="articleChips" class="chips"></div>
+        <div class="chips-wrap"><div id="articleChips" class="chips"></div></div>
 
         <div class="section-head">
           <p class="section-title">全部文章</p>
-          <button class="link-btn" onclick="sortArticlesLatest()">最新加入⌄</button>
+          <select id="articleSortSelect" class="sort-select" onchange="sortArticles(this.value)">
+            <option value="added">最新加入</option>
+            <option value="name">名稱 A→Z</option>
+            <option value="nameDesc">名稱 Z→A</option>
+          </select>
         </div>
         <div id="articleList" class="list"></div>
         <div id="articleEmptyState" class="empty">還沒有收藏任何文章，貼上連結或點右下角「＋」快速加入</div>
@@ -334,22 +388,42 @@
     </section>
 
     <section id="categoryScreen" class="screen">
-      <div class="page-title">
-        <button class="back" onclick="goBack()">‹</button>
-        <h2>分類</h2>
-        <button class="icon-btn" onclick="addCategory()">＋</button>
+      <header class="header">
+        <div class="topbar">
+          <div class="title">
+            <h1>分類</h1>
+            <p>網站與文章共用同一套分類</p>
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" onclick="addCategory()">＋</button>
+          </div>
+        </div>
+      </header>
+      <div class="seg-row">
+        <button class="seg-btn" id="segWebsite" onclick="setCategoryBrowseType('website')">🌐 網站</button>
+        <button class="seg-btn" id="segArticle" onclick="setCategoryBrowseType('article')">📰 文章</button>
       </div>
-      <div class="section-head" style="padding:0 20px;margin-top:0">
-        <p class="section-title" style="font-size:14px;color:var(--muted);font-weight:750">入口與文章共用同一套分類</p>
+      <div class="section-head" style="padding:10px 20px 0">
+        <p class="section-title" style="font-size:14px;color:var(--muted);font-weight:750">點分類可查看內容</p>
         <button class="link-btn" id="categoryEditToggle" onclick="toggleCategoryEditMode()">編輯分類</button>
       </div>
       <div id="catGrid" class="cat-grid"></div>
     </section>
 
+    <section id="categoryContentScreen" class="screen">
+      <div class="page-title">
+        <button class="back" onclick="goBack()">‹</button>
+        <h2 id="categoryContentTitle">分類</h2>
+        <span style="width:28px"></span>
+      </div>
+      <div id="categoryContentList" class="list" style="padding:4px 20px 110px"></div>
+      <div id="categoryContentEmpty" class="empty" style="display:none">這個分類目前沒有內容</div>
+    </section>
+
     <section id="detailScreen" class="screen">
       <div class="page-title">
         <button class="back" onclick="goBack()">‹</button>
-        <h2>入口資訊</h2>
+        <h2>網站資訊</h2>
         <button class="icon-btn" onclick="openForm(currentDetailId)">⋯</button>
       </div>
       <div id="detailCard" class="detail-card"></div>
@@ -358,7 +432,7 @@
     <section id="formScreen" class="screen">
       <div class="page-title">
         <button class="back" onclick="goBack()">‹</button>
-        <h2 id="formTitle">新增入口</h2>
+        <h2 id="formTitle">新增網站</h2>
         <button class="link-btn" onclick="saveForm()">儲存</button>
       </div>
       <form class="form" onsubmit="event.preventDefault(); saveForm();">
@@ -383,7 +457,7 @@
         </div>
         <div class="field">
           <label>說明</label>
-          <textarea id="entryDesc" placeholder="這個入口是做什麼用的"></textarea>
+          <textarea id="entryDesc" placeholder="這個網站是做什麼用的"></textarea>
         </div>
         <div class="switch-row">
           <div>
@@ -412,15 +486,19 @@
         </button>
         <button class="setting-item" onclick="document.getElementById('importFile').click()">
           <div class="sicon">⬆</div>
-          <div><strong>匯入資料</strong><p>選擇備份檔還原入口資料</p></div>
+          <div><strong>匯入資料</strong><p>選擇備份檔還原網站與文章資料</p></div>
+        </button>
+        <button class="setting-item" onclick="restoreDefaultCategories()">
+          <div class="sicon">🏷</div>
+          <div><strong>補回預設分類</strong><p>把 AI/科技/理財/泰語...這組預設分類加回清單，不會刪除其他資料</p></div>
         </button>
         <button class="setting-item" onclick="openResetModal()">
           <div class="sicon">🗑</div>
-          <div><strong>清除本機資料</strong><p>刪除這台裝置儲存的所有入口</p></div>
+          <div><strong>清除本機資料</strong><p>清空所有網站與文章，保留分類清單</p></div>
         </button>
         <button class="setting-item" onclick="resetDefaultData()">
           <div class="sicon">↺</div>
-          <div><strong>還原範例資料</strong><p>重新放回預設範例入口</p></div>
+          <div><strong>還原範例資料</strong><p>換成 app 內建的示範網站與分類，用於測試或參考</p></div>
         </button>
         <div class="setting-item">
           <div class="sicon">ⓘ</div>
@@ -435,6 +513,7 @@
     <nav class="bottom-nav">
       <button class="nav-btn active" id="navHome" onclick="showScreen('homeScreen')"><span>⌂</span>首頁</button>
       <button class="nav-btn" id="navArticles" onclick="showScreen('articlesScreen')"><span>📰</span>文章</button>
+      <button class="nav-btn" id="navWebsites" onclick="showScreen('websitesScreen')"><span>🌐</span>網站</button>
       <button class="nav-btn" id="navCategory" onclick="showScreen('categoryScreen')"><span>▦</span>分類</button>
       <button class="nav-btn" id="navSettings" onclick="showScreen('settingsScreen')"><span>⚙</span>設定</button>
     </nav>
@@ -506,6 +585,9 @@ let activeArticleCategory = "全部";
 let currentArticleDetailId = null;
 let quickAddEditingId = null;
 let categoryEditMode = false;
+let categoryBrowseType = "website";
+let currentCategoryContentType = "website";
+let currentCategoryContentName = "";
 
 function cryptoId(){
   return "id_" + Math.random().toString(36).slice(2) + Date.now().toString(36);
@@ -518,6 +600,7 @@ function migrateData(parsed){
     parsed.articleCategories.forEach(c => { if(!parsed.categories.includes(c)) parsed.categories.push(c); });
     delete parsed.articleCategories;
   }
+  parsed.entries.forEach(e => { if(!e.addedAt) e.addedAt = e.lastUsed || 0; });
   return parsed;
 }
 
@@ -541,7 +624,7 @@ function saveData(){
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
-const tabScreens = ["homeScreen", "articlesScreen", "categoryScreen", "settingsScreen"];
+const tabScreens = ["homeScreen", "articlesScreen", "websitesScreen", "categoryScreen", "settingsScreen"];
 let screenHistory = [];
 
 function activateScreen(id){
@@ -554,7 +637,7 @@ function activateScreen(id){
   if(id === "categoryScreen") document.getElementById("navCategory").classList.add("active");
   if(id === "settingsScreen") document.getElementById("navSettings").classList.add("active");
 
-  const hiddenFabScreens = ["settingsScreen", "formScreen", "detailScreen", "categoryScreen", "articleDetailScreen"];
+  const hiddenFabScreens = ["homeScreen", "settingsScreen", "formScreen", "detailScreen", "categoryScreen", "categoryContentScreen", "articleDetailScreen"];
   document.getElementById("fab").style.display = hiddenFabScreens.includes(id) ? "none" : "block";
 
   renderAll();
@@ -577,12 +660,12 @@ function goBack(){
 function fabAction(){
   const activeId = document.querySelector(".screen.active").id;
   if(activeId === "articlesScreen") openQuickAdd(null);
-  else openForm(null);
+  else if(activeId === "websitesScreen") openForm(null);
 }
 
-function focusSearch(){
-  showScreen("homeScreen");
-  setTimeout(() => document.getElementById("searchInput").focus(), 50);
+function focusWebsiteSearch(){
+  showScreen("websitesScreen");
+  setTimeout(() => document.getElementById("websiteSearchInput").focus(), 50);
 }
 
 function normalizeUrl(url){
@@ -628,18 +711,53 @@ function openDetail(id){
 
 function renderHome(){
   const keyword = document.getElementById("searchInput")?.value?.trim().toLowerCase() || "";
-  const entries = data.entries.filter(e => {
-    const catMatch = activeCategory === "全部" || activeCategory === "常用" ? (activeCategory === "全部" ? true : e.favorite) : e.category === activeCategory;
-    const text = `${e.name} ${e.category} ${e.desc} ${e.url}`.toLowerCase();
-    return catMatch && text.includes(keyword);
-  });
+  const hasKeyword = keyword.length > 0;
 
-  document.getElementById("favGrid").innerHTML = data.entries.filter(e => e.favorite).slice(0,6).map(e => `
+  document.getElementById("homeDefaultView").style.display = hasKeyword ? "none" : "block";
+  document.getElementById("homeSearchView").style.display = hasKeyword ? "block" : "none";
+
+  const favorites = data.entries.filter(e => e.favorite).slice(0, 6);
+  document.getElementById("favGrid").innerHTML = favorites.map(e => `
     <a class="fav-card" href="javascript:void(0)" onclick="openEntry('${e.id}')" oncontextmenu="openDetail('${e.id}');return false;">
       <div class="app-icon">${escapeHtml(e.icon || "🔗")}</div>
       <div class="fav-name">${escapeHtml(e.name)} <span class="star">★</span></div>
     </a>
   `).join("");
+  document.getElementById("favEmptyState").style.display = favorites.length ? "none" : "block";
+
+  if(hasKeyword){
+    const matchedSites = data.entries.filter(e => `${e.name} ${e.category} ${e.desc} ${e.url}`.toLowerCase().includes(keyword))
+      .map(e => ({ type: "website", id: e.id, icon: e.icon || "🔗", title: e.name, sub: e.desc || e.url, category: e.category }));
+    const matchedArticles = data.articles.filter(a => `${a.title} ${a.category} ${a.note} ${a.url}`.toLowerCase().includes(keyword))
+      .map(a => ({ type: "article", id: a.id, icon: "🔖", title: a.title || domainOf(a.url), sub: a.note || a.url, category: a.category }));
+    const results = [...matchedSites, ...matchedArticles];
+
+    document.getElementById("homeSearchList").innerHTML = results.map(r => `
+      <div class="item" onclick="${r.type === 'website' ? `openDetail('${r.id}')` : `openArticleDetail('${r.id}')`}">
+        <div class="app-icon">${escapeHtml(r.icon)}</div>
+        <div class="item-main">
+          <div class="name-row"><div class="name">${escapeHtml(r.title)}</div><span class="tag">${escapeHtml(r.category)}</span></div>
+          <div class="desc">${escapeHtml(r.sub)}</div>
+        </div>
+        <div class="more">⋮</div>
+      </div>
+    `).join("");
+    document.getElementById("homeSearchEmpty").style.display = results.length ? "none" : "block";
+  }
+}
+
+function goToFavoriteWebsites(){
+  activeCategory = "常用";
+  showScreen("websitesScreen");
+}
+
+function renderWebsites(){
+  const keyword = document.getElementById("websiteSearchInput")?.value?.trim().toLowerCase() || "";
+  const entries = data.entries.filter(e => {
+    const catMatch = activeCategory === "全部" || activeCategory === "常用" ? (activeCategory === "全部" ? true : e.favorite) : e.category === activeCategory;
+    const text = `${e.name} ${e.category} ${e.desc} ${e.url}`.toLowerCase();
+    return catMatch && text.includes(keyword);
+  });
 
   const chips = ["全部", "常用", ...data.categories.filter(c => c !== "全部")];
   document.getElementById("chips").innerHTML = chips.map(c => `
@@ -660,20 +778,46 @@ function renderHome(){
   document.getElementById("emptyState").style.display = entries.length ? "none" : "block";
 }
 
+function setCategory(cat){
+  activeCategory = cat;
+  renderWebsites();
+}
+
+function sortEntries(mode){
+  if(mode === "lastUsed") data.entries.sort((a,b) => (b.lastUsed || 0) - (a.lastUsed || 0));
+  else if(mode === "added") data.entries.sort((a,b) => (b.addedAt || 0) - (a.addedAt || 0));
+  else if(mode === "name") data.entries.sort((a,b) => a.name.localeCompare(b.name, "zh-Hant"));
+  else if(mode === "nameDesc") data.entries.sort((a,b) => b.name.localeCompare(a.name, "zh-Hant"));
+  saveData();
+  renderWebsites();
+}
+
+function setCategoryBrowseType(type){
+  categoryBrowseType = type;
+  renderCategories();
+}
+
 function renderCategories(){
   const icons = { "全部":"▦", "AI":"🤖", "科技":"💻", "理財":"💰", "泰語":"🇹🇭", "DJ":"🎧", "吉他":"🎸", "音樂":"🎵", "Jennie":"🌸", "lingorm":"🧴", "娛樂":"🎬", "生活":"🏡", "健康":"🩺", "閱讀":"📖", "工作":"💼", "待處理":"📌" };
   const cats = data.categories.filter(c => c !== "全部");
   document.getElementById("categoryEditToggle").textContent = categoryEditMode ? "完成" : "編輯分類";
+  document.getElementById("segWebsite").classList.toggle("active", categoryBrowseType === "website");
+  document.getElementById("segArticle").classList.toggle("active", categoryBrowseType === "article");
 
-  document.getElementById("catGrid").innerHTML = cats.map(c => {
-    const count = data.entries.filter(e => e.category === c).length + data.articles.filter(a => a.category === c).length;
+  document.getElementById("catGrid").innerHTML = cats.map((c, i) => {
+    const count = categoryBrowseType === "website"
+      ? data.entries.filter(e => e.category === c).length
+      : data.articles.filter(a => a.category === c).length;
+    const countLabel = categoryBrowseType === "website" ? `${count} 個網站` : `${count} 篇文章`;
+
     if(categoryEditMode){
       return `
         <div class="cat-card">
-          <div class="big">${icons[c] || "📁"}</div>
-          <div class="cat-name">${escapeHtml(c)}</div>
-          <div class="count">${count} 筆資料</div>
+          <div class="row"><div class="big">${icons[c] || "📁"}</div><div class="cat-name">${escapeHtml(c)}</div></div>
+          <div class="count">${countLabel}</div>
           <div class="edit-actions">
+            <button onclick="moveCategory(${i},-1)" ${i === 0 ? "disabled" : ""}>↑</button>
+            <button onclick="moveCategory(${i},1)" ${i === cats.length - 1 ? "disabled" : ""}>↓</button>
             <button onclick="renameCategory('${escapeAttr(c)}')">改名</button>
             <button class="del" onclick="deleteCategory('${escapeAttr(c)}')">刪除</button>
           </div>
@@ -681,13 +825,63 @@ function renderCategories(){
       `;
     }
     return `
-      <button class="cat-card" onclick="setCategory('${escapeAttr(c)}');showScreen('homeScreen')">
-        <div class="big">${icons[c] || "📁"}</div>
-        <div class="cat-name">${escapeHtml(c)}</div>
-        <div class="count">${count} 筆資料</div>
+      <button class="cat-card" onclick="openCategoryContent('${categoryBrowseType}','${escapeAttr(c)}')">
+        <div class="row"><div class="big">${icons[c] || "📁"}</div><div class="cat-name">${escapeHtml(c)}</div></div>
+        <div class="count">${countLabel}</div>
       </button>
     `;
   }).join("");
+}
+
+function moveCategory(index, dir){
+  const cats = data.categories.filter(c => c !== "全部");
+  const target = index + dir;
+  if(target < 0 || target >= cats.length) return;
+  [cats[index], cats[target]] = [cats[target], cats[index]];
+  data.categories = ["全部", ...cats];
+  saveData();
+  renderCategories();
+}
+
+function openCategoryContent(type, name){
+  currentCategoryContentType = type;
+  currentCategoryContentName = name;
+  showScreen("categoryContentScreen");
+}
+
+function renderCategoryContent(){
+  document.getElementById("categoryContentTitle").textContent = currentCategoryContentName;
+  const list = document.getElementById("categoryContentList");
+  const empty = document.getElementById("categoryContentEmpty");
+
+  if(currentCategoryContentType === "website"){
+    const items = data.entries.filter(e => e.category === currentCategoryContentName);
+    list.innerHTML = items.map(e => `
+      <div class="item" onclick="openDetail('${e.id}')">
+        <div class="app-icon">${escapeHtml(e.icon || "🔗")}</div>
+        <div class="item-main">
+          <div class="name-row"><div class="name">${escapeHtml(e.name)}</div>${e.favorite ? '<span class="star">★</span>' : ''}</div>
+          <div class="desc">${escapeHtml(e.desc || e.url)}</div>
+        </div>
+        <div class="more">⋮</div>
+      </div>
+    `).join("");
+    empty.style.display = items.length ? "none" : "block";
+  }else{
+    const items = data.articles.filter(a => a.category === currentCategoryContentName);
+    list.innerHTML = items.map(a => `
+      <div class="item" onclick="openArticleDetail('${a.id}')">
+        <div class="app-icon">🔖</div>
+        <div class="item-main">
+          <div class="name-row"><div class="name">${escapeHtml(a.title || domainOf(a.url))}</div></div>
+          <div class="desc">${escapeHtml(a.note || a.url)}</div>
+          <div class="article-meta"><span>${escapeHtml(domainOf(a.url))}</span><span class="dot">·</span><span>${formatDate(a.addedAt)}</span></div>
+        </div>
+        <div class="more">⋮</div>
+      </div>
+    `).join("");
+    empty.style.display = items.length ? "none" : "block";
+  }
 }
 
 function toggleCategoryEditMode(){
@@ -752,9 +946,12 @@ function renderCategoryOptions(selected){
 }
 
 function renderAll(){
-  if(document.getElementById("homeScreen").classList.contains("active")) renderHome();
-  if(document.getElementById("articlesScreen").classList.contains("active")) renderArticles();
-  renderCategories();
+  const activeId = document.querySelector(".screen.active")?.id;
+  if(activeId === "homeScreen") renderHome();
+  if(activeId === "websitesScreen") renderWebsites();
+  if(activeId === "articlesScreen") renderArticles();
+  if(activeId === "categoryScreen") renderCategories();
+  if(activeId === "categoryContentScreen") renderCategoryContent();
 }
 
 function domainOf(url){
@@ -777,8 +974,10 @@ function setArticleCategory(cat){
   renderArticles();
 }
 
-function sortArticlesLatest(){
-  data.articles.sort((a,b) => (b.addedAt || 0) - (a.addedAt || 0));
+function sortArticles(mode){
+  if(mode === "added") data.articles.sort((a,b) => (b.addedAt || 0) - (a.addedAt || 0));
+  else if(mode === "name") data.articles.sort((a,b) => (a.title || domainOf(a.url)).localeCompare(b.title || domainOf(b.url), "zh-Hant"));
+  else if(mode === "nameDesc") data.articles.sort((a,b) => (b.title || domainOf(b.url)).localeCompare(a.title || domainOf(a.url), "zh-Hant"));
   saveData();
   renderArticles();
 }
@@ -910,21 +1109,10 @@ function saveQuickArticle(){
 }
 
 
-function setCategory(cat){
-  activeCategory = cat;
-  renderHome();
-}
-
-function sortLatest(){
-  data.entries.sort((a,b) => (b.lastUsed || 0) - (a.lastUsed || 0));
-  saveData();
-  renderHome();
-}
-
 function openForm(id){
   document.getElementById("entryId").value = id || "";
   const editing = Boolean(id);
-  document.getElementById("formTitle").textContent = editing ? "編輯入口" : "新增入口";
+  document.getElementById("formTitle").textContent = editing ? "編輯網站" : "新增網站";
 
   const entry = editing ? data.entries.find(e => e.id === id) : null;
   renderCategoryOptions(entry?.category || "工作");
@@ -957,22 +1145,22 @@ function saveForm(){
     const entry = data.entries.find(e => e.id === id);
     if(entry) Object.assign(entry, { name, url, category, icon, desc, favorite });
   }else{
-    data.entries.unshift({ id: cryptoId(), name, url, category, icon, desc, favorite, lastUsed: 0 });
+    data.entries.unshift({ id: cryptoId(), name, url, category, icon, desc, favorite, lastUsed: 0, addedAt: Date.now() });
   }
 
   saveData();
   activeCategory = "全部";
-  showScreen("homeScreen");
+  showScreen("websitesScreen");
 }
 
 function confirmDelete(id){
   const entry = data.entries.find(e => e.id === id);
   if(!entry) return;
-  openModal("刪除入口", `確定要刪除「${entry.name}」嗎？`, () => {
+  openModal("刪除網站", `確定要刪除「${entry.name}」嗎？`, () => {
     data.entries = data.entries.filter(e => e.id !== id);
     saveData();
     closeModal();
-    showScreen("homeScreen");
+    showScreen("websitesScreen");
   });
 }
 
@@ -1023,24 +1211,33 @@ function importData(event){
 }
 
 function openResetModal(){
-  openModal("清除本機資料", "這會刪除目前這台裝置儲存的所有入口資料。建議先備份。", () => {
-    localStorage.removeItem(STORAGE_KEY);
-    data = structuredClone(defaultData);
+  openModal("清除本機資料", "這會清空這台裝置上的所有網站與文章內容，但會保留你目前的分類清單。此動作無法復原，建議先匯出備份。", () => {
+    data.entries = [];
+    data.articles = [];
     saveData();
     closeModal();
     activeCategory = "全部";
+    activeArticleCategory = "全部";
     showScreen("homeScreen");
   });
 }
 
 function resetDefaultData(){
-  openModal("還原範例資料", "這會覆蓋目前資料並放回預設範例。確定嗎？", () => {
+  openModal("還原範例資料", "這會覆蓋目前資料，換成 app 內建的示範網站與分類。確定嗎？", () => {
     data = structuredClone(defaultData);
     saveData();
     closeModal();
     activeCategory = "全部";
+    activeArticleCategory = "全部";
     showScreen("homeScreen");
   });
+}
+
+function restoreDefaultCategories(){
+  defaultData.categories.forEach(c => { if(!data.categories.includes(c)) data.categories.push(c); });
+  saveData();
+  renderAll();
+  alert("已把預設分類補回清單");
 }
 
 function openModal(title, text, onConfirm){
